@@ -1,32 +1,135 @@
-# Object Orientation
 
-## Overview
+# Conditionals, Loops, Operators, Functions: Bringing It All Together
 
-We'll introduce the concept of Object Oriented Programming (OOP)
+We've learned about a lot of statements we have available to us in Python to write more dynamic and concise code. Conditionals let us create *conditions* that inform our code how to operate. Loops help us to dynamically iterate through and operate on a collection (i.e. a list or a dictionary). And Operators, generally, allow us to compare elements to each other, assert the sameness of elements, or return elements based on their truthiness or falsiness. Functions, essentially, help us to create an object that packages up one or more operations and allows us to execute those operations from anywhere else in scope in our code. However, as we can tell by the title of this lesson, we will now be focusing on using all of these smaller parts together. As we get further into our lives as programmers, we will find ourselves facing more and more complex problems and to solve those we will need these types of tools to create solutions while keeping our code concise and efficient. 
 
-## Object-Oriented Programming (OOP)
+## Objectives:
+* Identify how and when to use functions, conditionals, loops, and operators
+* Use functions, conditionals, loops, and operators efficiently and effectively
 
-*An object-oriented approach to application development makes programs more intuitive to design, faster to develop, more amenable to modification, and easier to understand.*  
-—[*Object-Oriented Programming with Objective-C*][apple_oop_guide_intro], Apple Inc.
+## Instructions
 
-[apple_oop_guide_intro]: https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/OOP_ObjC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005149-CH1-SW2
+In this lab, we will be working with a dataset containing information from some of the largest Python-focused Meetup groups in the US. Our data is in the groups_db.py file, which we are importing below and as the variable `data`. You can also see an example of what the element's datastructure looks like by running the cell with `data[0]`.
 
-It's natural to wonder, "how can a string of ones and zeroes be referred to as an 'object'?" The use of the word "object" is an abstraction of thought. An "object" in code has no more physical form than does a word in any human language. Sure, words have physical representations: speaking a word causes air to vibrate in a sound wave, ink on a page can be shaped into symbols that represent the word, a meaning can be pointed at or mimed out; but none of these are the word itself. Human language is a system of abstraction: it communicates the *idea* of a thing, but not the thing itself.
+To pass the tests in this lab, create functions that perform the operations indicated and have the correct return value.
 
-![](https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg)  
-Translation: "This is not a pipe." - [*The Treachery of Images*](https://en.wikipedia.org/wiki/The_Treachery_of_Images), [René Magritte](https://en.wikipedia.org/wiki/Ren%C3%A9_Magritte), 1927  
 
-This image of a pipe is no more a pipe than the word "pipe" is a pipe; in the same way, a code object named `pipe` is not a pipe, but only another form of representing a pipe.
+```python
+from groups import data
+```
 
->As humans, we’re constantly faced with myriad facts and impressions that we must make sense of. To do so, we must abstract underlying structure away from surface details and discover the fundamental relations at work. Abstractions reveal causes and effects, expose patterns and frameworks, and separate what’s important from what’s not. Object orientation provides an abstraction of the data on which you operate; moreover, it provides a concrete grouping between the data and the operations you can perform with the data—in effect giving the data behavior.  
->—[*Object-Oriented Programming with Objective-C*](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/OOP_ObjC/Articles/ooOOP.html#//apple_ref/doc/uid/TP40005149-CH8-SW3), Apple Inc.
 
-A code object representing a water pipe (instead of a smoking pipe) might contain values for `length`, `diameter`, `material`, and `manufacturer`. The bundling of these individual pieces of information together begins to form a larger whole.
+```python
+data[0]
+```
 
-Object-Oriented Programming, however, does more than just bundle up individual pieces of data that represent a "thing" — it also bundles customized functions that can be performed *on* that data. These are called **methods**: behaviors that an object performs upon its internal data and even upon other code objects.
+Let's say we would like to have a way to find all groups in the city we're in or perhaps the city we might want to visit, to make sure we can find a python group to join. 
 
-An object in code is a thing with all the data and all the logic required to complete a task. Objects are models and metaphors for the problems we solve in code.
+Below, replace the `pass` statement with your code. The `groups_in_city` function takes in two arguments; the list of meetup dictionary objects, `data`, and a string representing a city's name. It should return only a list of dictionary's whose `city` attribute points to a string with the same name as the city name passed in as the second argument.
 
-Object-oriented programming was born from the trend of making digital lives reflect our real lives. In the 1970's, [Adele Goldberg](https://en.wikipedia.org/wiki/Adele_Goldberg_%28computer_scientist%29) and [Alan Kay](https://en.wikipedia.org/wiki/Alan_Kay) developed an object-oriented language at Xerox PARC called SmallTalk, which was used in the first personal computer.
 
-Python comes with a few types of Objects to get us started, things like `int` for Integer, `str` for String, `list` for List, etc. We call these base types of Objects "Primitives." But what if we wanted to create a new type in our programming universe, a new kind of object for our code? That's what the `class` keyword and object orientation allows us to do.
+```python
+def groups_in_city(list_of_groups, city_name):
+    new_list = []
+    for group in list_of_groups:
+        if group['city'].lower() == city_name.lower():
+            new_list.append(group)
+    return new_list
+```
+
+Similarly, we will probably want to make sure the groups we are looking at joining have a sizeable membership so that we have a bigger network or even a more active schedule of events. 
+
+Below, replace the `pass` statement with your code. The `groups_with_x_members` function takes in two arguments; the list of meetup dictionary objects, `data`, and an integer representing the minimum number of members in a group. It should return a list of dictionaries that have the same or greater number of members.
+
+
+```python
+def groups_with_x_members(list_of_groups, num_members):
+    if not type(num_topics) == int:
+        raise TypeError("Second argument num_members must be an integer")
+    new_list = []
+    for group in list_of_groups:
+        if group['members'] >= num_topics:
+            new_list.append(group)
+    return new_list
+```
+
+Another way we might want to narrow our search down for groups might be to decide how diverse of topics it covers. Maybe we might be interested in groups that have events that talk about more than **just** Python.
+
+Below, replace the `pass` statement with your code. The `groups_with_x_num_topics` function takes in two arguments; the list of meetup dictionary objects, `data`, and an integer representing the minimum number of topics a group lists. It should return a list of dictionaries that have the same or greater number of topics listed.
+
+
+```python
+def groups_with_x_num_topics(list_of_groups, num_topics):
+    if not type(num_topics) == int:
+        raise TypeError("Second argument num_topics must be an integer")
+    new_list = []
+    for group in list_of_groups:
+        if len(group['topics']) >= num_topics:
+            new_list.append(group)
+    return new_list
+```
+
+Alright, so trying to brute force diversity of topic might have some value, but when we finally do have a group we want to take a look at, we probably want to have a way to make sure that the topics that the group lists are still *actually* of interest to us. So, let's create a function that will iterate through the a *single* group and return a list of names for each of the topics listed for that group.
+
+Below, replace the `pass` statement with your code. The `list_group_topics` function takes in one argument, a group dictionary. It should return a list of strings that are the `name` of each topic for that group.
+
+
+```python
+def list_group_topics(group):
+    list_of_topic_names = []
+    for topic in group['topics']:
+        list_of_topic_names.append(topic['name'])
+    return list_of_topic_names
+```
+
+Great! Now we have an easy way to check if a group has the topics we're interested in. What about just taking stock of all the groups we are currently looking at. We might want to get an idea of what the most popular topics are before we decide whether we're *not interested* in certain topics. 
+
+Below, replace the `pass` statement with your code. The `find_topic_popularity` function takes in one argument, the list of meetup dictionary objects, `data`. It should return a single dictionary that has a key for each **topic** listed for all groups in the list. Each key should point to the number of times that topic appears in the dataset. For example, if `Python` appears in 15 groups, there would be a key `'Python'` that has a value of 15. 
+
+
+```python
+def find_topic_popularity(list_of_groups):
+    topic_pop = {}
+    for group in list_of_groups:
+        for topic in group['topics']:
+            if not topic['name'].lower() in topic_pop:
+                topic_pop[f"{topic['name'].lower()}"] = 1
+            else: 
+                topic_pop[f"{topic['name'].lower()}"] += 1
+    return topic_pop
+```
+
+The previous couple functions definitely feel very useful but perhaps we actually want to be able to filter for groups  that contain the topic we would like to look for.
+
+Below, replace the `pass` statement with your code. The `find_groups_containing_topic` function takes in twp arguments; the list of meetup dictionary objects, `data`, and the name of the topic. It should return all groups that contain topics with a matching name.
+
+
+```python
+def find_groups_containing_topic(list_of_groups, topic_name):
+    filtered_groups = []
+    for group in list_of_groups:
+        for topic in group['topics']:
+            if topic['name'].lower() == topic_name.lower():
+                filtered_groups.append(group)
+    return filtered_groups
+
+find_groups_containing_topic(data, 'open source')
+```
+
+Okay, another, perhaps most obvious way of narrowing down our search would be to find groups above a certain `rating`. 
+
+Below, replace the `pass` statement with your code. The `filter_groups_by_rating` function takes in two arguments; first a list of dictionaries for each group, and second a minimum rating. The function should return a list of groups with a rating greater than or equal to the rating passed in.
+
+
+```python
+def filter_groups_by_rating(list_of_groups, min_rating):
+    filtered_groups = []
+    for group in list_of_groups:
+        if group['rating'] >= min_rating:
+            filtered_groups.append(group)
+    return filtered_groups
+```
+
+## Summary
+
+In this lab, we practiced writing functions that used conditionals, operators, and loops to select, operate on, and return the information we wanted from our dataset.

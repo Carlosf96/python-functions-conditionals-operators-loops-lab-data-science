@@ -2,7 +2,7 @@ import pytest
 from ipynb.fs.full.index import data, groups_in_city, groups_with_x_members, groups_with_x_num_topics, list_group_topics, find_topic_popularity, find_groups_containing_topic, filter_groups_by_rating
 
 def test_groups_in_city():
-    assert len(groups_in_city(list_of_groups, "Yonkers")) == 1
+    assert len(groups_in_city(data, "Yonkers")) == 1
     assert len(groups_in_city(data, 'New York')) == 62
     assert len(groups_in_city(data, 'brooklyn')) == 7
 
